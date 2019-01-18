@@ -70,5 +70,28 @@ public class Trie {
         index ++;
         insertRecursive(node, word, index);
     }
+    /**
+     * Iterative implementation of search
+     */
+
+    public boolean search(String word ){
+        TrieNode current = root;
+        for (int i =0 ; i < word.length(); i++ ) {
+            char ch = word.charAt(i);
+            // is this character in the current node's map?
+            TrieNode node = current.children.get(ch);
+            // if it isn't, we want to return false
+            if ( node == null ) {
+                return false;
+            }
+            // if it is we want to increment the current node
+            current = node;
+        }
+        // if we get all the way through the for loop, then we return the current node
+        // end-of-word value
+        return current.endOfWord;
+
+    }
+
 
 }
