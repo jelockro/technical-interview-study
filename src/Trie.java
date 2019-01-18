@@ -92,6 +92,32 @@ public class Trie {
         return current.endOfWord;
 
     }
+    /**
+     * A Recursive implementation of search
+     */
 
+    public boolean searchRecursive(String word) {
+        return searchRecursive(root, word, 0);
+    }
+
+    private boolean searchRecursive(TrieNode current, String word, int index) {
+        // take care of the end case to exit loop
+        if (index == word.length()) {
+            return current.endOfWord;
+        }
+        char ch = word.charAt(index);
+        TrieNode node = current.children.get(ch);
+        // no character in the children map returns false
+        if (node == null ) {
+            return false;
+        }
+        // the character is in the map, so lets move to the next node in the Tree,
+        current = node;
+        // increment the character index,
+        index ++;
+        // and perform the search on that node
+        return searchRecursive(current, word, index);
+
+    }
 
 }
