@@ -119,5 +119,45 @@ public class Trie {
         return searchRecursive(current, word, index);
 
     }
+    /**
+     * A Recursive implementation of delete
+     */
 
+    public void delete(String word) {
+        delete(root, word, 0);
+    }
+
+    /**
+     * Returns true if parent is deleting mapping
+     */
+
+    private boolean delete(TrieNode current, String word, int index) {
+        // deal with final case
+        if (index == word.length()) {
+            // when the end of the word is reached,
+            // only delete if current.endOfWord == true
+            if (!current.endOfWord) {
+                return false;
+            }
+            // since we are at the end of the word, time to switch that node's value to false
+            current.endOfWord = false;
+            // if the current has no other mapping return true
+            return current.children.size() == 0; // or could be return current.children == null;
+            // the node now has no children and a false; it is really now not a node
+        }
+        char ch = word.charAt(index);
+        TrieNode node = current.children.get(ch);
+        // if node == null, the word is not in the dictionary, the method is done
+        if (node == null) {
+            return false;
+        }
+        // if this returns true, you are at the end node, and the node will be deleted
+        boolean shouldDeleteCurrentNode = delete(node, word, index + 1);
+
+        if (shouldDeleteCurrentNode) {
+            current.children.remove(ch);
+            return current.children.size() == 0;
+        }
+
+    }
 }
