@@ -123,14 +123,14 @@ public class Trie {
      * A Recursive implementation of delete
      */
 
-    public void delete(String word) {
-        delete(root, word, 0);
+    public boolean delete(String word) {
+        return delete(root, word, 0);
     }
 
     /**
      * Returns true if parent is deleting mapping
      */
-
+    private boolean finalDeletion;
     private boolean delete(TrieNode current, String word, int index) {
         // deal with final case
         if (index == word.length()) {
@@ -155,9 +155,11 @@ public class Trie {
         boolean shouldDeleteCurrentNode = delete(node, word, index + 1);
 
         if (shouldDeleteCurrentNode) {
+
             current.children.remove(ch);
             return current.children.size() == 0;
         }
 
+        return false;
     }
 }
