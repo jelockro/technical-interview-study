@@ -88,8 +88,23 @@ public class SinglyLinkedList<T> {
         } else if (size == 2){
             tail.setNext(head);
             head = tail;
-            tail = head.setNext();
+            tail = head.getNext();
             tail.setNext(null);
+        } else {
+            Node<T> current = head;
+            Node<T> currentNext = head.getNext();
+            Node<T> currentNextNext = currentNext.getNext();
+            tail = head;
+            while (currentNext!= null) {
+                currentNext.setNext(current);
+                current = currentNext;
+                currentNext = currentNextNext;
+                if (currentNextNext != null) {
+                    currentNextNext = currentNext.getNext();
+                }
+            }
+            tail.setNext(null);
+            head = current;
         }
 
     }
