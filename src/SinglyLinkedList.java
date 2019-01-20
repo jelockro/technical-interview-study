@@ -109,6 +109,36 @@ public class SinglyLinkedList<T> {
 
     }
 
+    // how to delete a node at a certain location, how to find a position of a certain element
+    // within a list
+
+    public T removeElement(T e) {
+        Node<T> current = head;
+        Node<T> previous = head;
+        int position = 0;
+        while (current != null && current.getElement() != e ){
+            previous = current;
+            current = current.getNext();
+            position++;
+        }
+        if(current == null){
+            return null;
+        } else {
+            if(head == current ) {
+                head = current.getNext();
+            } else if(tail == current) {
+                tail = previous;
+                tail.setNext(null);
+            } else {
+                previous.setNext(current.getNext());
+            }
+            System.out.println("Found and removed noded at position " + position);
+            size--;
+            return current.getElement();
+        }
+    }
+
+
 
 
 
