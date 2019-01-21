@@ -17,7 +17,7 @@ public class QueueExample<E> {
         list.addLast(element);
     }
 
-    public E dequeue() {
+    public void dequeue() {
         list.removeFirst();
     }
     public E first() {
