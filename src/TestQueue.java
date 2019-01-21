@@ -7,6 +7,9 @@ public class TestQueue {
         myQueue.enqueue("Person 3");
         myQueue.enqueue("Person 4");
         myQueue.enqueue("Person 5");
+        System.out.println(myQueue.size());
+        System.out.println(myQueue.first());
+        System.out.println(myQueue.size());
 
     }
 }
