@@ -12,5 +12,6 @@ public class TestStack {
         while (myStack.size() > 0 ){
             myStack.pop();
         }
+        String myTestString = myStack.reverse("12345");
     }
 }
