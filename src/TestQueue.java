@@ -10,6 +10,9 @@ public class TestQueue {
         System.out.println(myQueue.size());
         System.out.println(myQueue.first());
         System.out.println(myQueue.size());
+        while (myQueue.size() > 0 ){
+            myQueue.dequeue();
+        }
 
     }
 }
